@@ -72,14 +72,14 @@ $query="SELECT userID FROM user WHERE nazwa='$login'";
     
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 
-    <a class="navbar-brand" href="../menu.php">Home</a>
+    <a class="navbar-brand" href="menu.php">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item ">
-            <a class="nav-link" href="../zamowienia.php">Zamówienia </a>
+            <a class="nav-link" href="zamowienia.php">Zamówienia </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="profil.php">Sprawdź kompletność</a>
@@ -98,7 +98,7 @@ $query="SELECT userID FROM user WHERE nazwa='$login'";
         <?php
             echo $_SESSION["login"];    
         ?>
-        <a href="../Auth/logout.php" class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Wyloguj</a>
+        <a href="logout.php" class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Wyloguj</a>
         </li>
     </div>
     </nav>

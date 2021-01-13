@@ -112,13 +112,13 @@ VALUES (NULL, '$p_nazwa', '$p_rozmiar', '$p_producent', '$p_dostepnosc', '$p_cen
                 $p_typ, $p_opis);
                 if($val == OK){
                     
-                    echo "Produkt dodany.<a href='../menu.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Menu głównego</a>";
+                    echo "Produkt dodany.<a href='menu.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Menu głównego</a>";
                     echo("<br>");   
                     echo "Wróć do <a href='dodajprodukt.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Dodwawania produktu</a>";
                 }
                 else {
                     echo "Błąd serwera. Rejestracja nie powiodła się.";
-                    echo "Wróć do <a href='../menu.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Menu gównego</a>";
+                    echo "Wróć do <a href='menu.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Menu gównego</a>";
                     
                 }
                 ?>

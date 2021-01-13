@@ -140,7 +140,7 @@ function zarejestruj ($login, $haslo, $email){
 
             //Reakcja na wartość zwróconą przez funkcję
             if($val == OK){
-                echo "Rejestracja poprawna. Możesz się <a href='../index.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>zalogować</a>";
+                echo "Rejestracja poprawna. Możesz się <a href='index.php' class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>zalogować</a>";
             }
             else if($val == BLAD_LOGIN){
                 echo "Login użytkownika musi mieć od 4 do 15 znaków i może zawierać ";

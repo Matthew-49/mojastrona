@@ -1,7 +1,7 @@
 <?php
 session_start();
 // if(!isset($_SESSION['login'])){
-//     header("location: dodajprodukt.php");
+//     header("location: log_form.php");
 // }
 ?>
     <!doctype html>
@@ -18,7 +18,11 @@ session_start();
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-        <title>Hurwownia</title>
+        <!-- biblioteka ajax -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+        <title>Hurtownia</title>
     </head>
         
         <body>
@@ -26,14 +30,14 @@ session_start();
     
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 
-    <a class="navbar-brand" href="../menu.php">Home</a>
+    <a class="navbar-brand" href="menu.php">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-            <a class="nav-link" href="../zamowienia.php">Zamówienia </a>
+    <ul class="navbar-nav mr-auto">
+    <li class="nav-item ">
+            <a class="nav-link" href="zamowienia.php">Zamówienia </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="profil.php">Sprawdź kompletność</a>
@@ -52,23 +56,107 @@ session_start();
         <?php
             echo $_SESSION["login"];    
         ?>
-        <a href="../Auth/logout.php" class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Wyloguj</a>
+        <a href="logout.php" class='btn btn-dark btn-sm active ' role='button' aria-pressed='true'>Wyloguj</a>
         </li>
     </div>
     </nav>
 
-    <main role="main" class="container col-4">
-    <div class="row">
-    <div class="col"><h1 class="text-center">Dodwanie nowego produktu</h1></div>
-    </div>
-    <div class="row">
-    <div class="col"><h2 class="text-center">Dane wymagane do utworzenia produktu</h2></div>
-    </div>
+    <main role="main" class="container col-5">
+    
+    <?php
+    global $host, $username, $password, $dbName, $conn;
+
+    if(isset($_GET['p_ID'])){
+    
+    
+        $p_ID=$_GET['p_ID'];
+       // $login=$_SESSION["login"];
+    }
+    include_once "polacz.php";
+
+
+
+    echo " class='btn btn-dark btn-block active ' role='button' aria-pressed='true'>Wróć do listy produktów</a>";
+
+    $query="SELECT p_ID, p_nazwa, p_rozmiar, p_producent, p_dostepnosc, p_cena, 
+    p_typ, p_opis FROM produkt WHERE p_ID=$p_ID";
+    // $p_ID=$r['p_ID'];
+
+    $result = mysqli_query($conn,$query);
+
+
+if (mysqli_num_rows($result)>0){
+    
+
+    echo'<div class="table-responsive-sm ">';
+    
+    echo'<table class=" table table-striped table-bordered  table-sm" id="table" >';
+
+
+    echo '<thead>';
+    echo '<tr >';
+    echo '<th>Nazwa</th>';
+    echo '<th>Rozmiar</th>';
+    echo '<th>Producent</th>';
+    echo '<th>Dostępność</th>';
+    echo '<th>Cena</th>';
+    echo '<th>Typ</th>';
+    echo '<th>Opis</th>';
+    echo '</tr>';
+
+        echo'<tbody >';
+        while ($r=mysqli_fetch_assoc($result)){
+
+            
+
+            echo "<tr>";
+       
+
+
+
+                    echo "<td>".$r['p_nazwa']."</td>";
+
+                    echo "<td>".$r['p_rozmiar']."</td>";
+
+                    echo "<td>".$r['p_producent']."</td>";
+
+                    echo "<td>".$r['p_dostepnosc']."</td>";
+
+                    echo "<td>".$r['p_cena']."</td>";
+                    
+                    echo "<td>".$r['p_typ']."</td>";
+
+                    echo "<td>".$r['p_opis']."</td>";
+
+  
+
+
+            
+
+            echo "</tr>";
+
+        }
+        echo'</tbody>';
+    echo'</table>';
+  echo'</div>';
+}
+
+else{
+    echo "Brak produktów.";
+};
+
+
+
+
+    ?> 
+    
+
+    <h2>Zmień informacje o produkcie</h2>
 			<form name = "formularz3"
-				action = "dod_produkt.php"
+				action = "edytujproduktsc.php"
 				method = "post">
 			
-			<table>
+                <table>
 				<tr>
 					<td> Nazwa </td>	                    <td><input type="text" name="p_nazwa"></td>
 				</tr>
@@ -93,14 +181,14 @@ session_start();
 
             
 				</table>
-				
-				<input type="submit" type="submit" name="utworz" value="Utwórz">
+
+
+				<input type="submit" type="submit" name="Zmien" value="Zmień">
+                <input type="submit" type="submit" name="Zmien" value="Usuń">
 			
 			</forms>
-
     </main>    
-                
-
+            
         
 
         

@@ -27,9 +27,25 @@ class Webpage
     }
     public function ShowNavLogged()
     {
-        echo "
-        
-        ";
+        echo '
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <div class="col text-white center mb-4 pt-3"><h1>Hurtownia<h1></div>
+                 <a class="navbar-brand" href="index.php">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="menu.php"> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profil.php">Profil</a>
+                    </li>
+                    </ul>
+                </div>
+            </nav>
+        ';
     }
     public function ShowNavNotLogged()
     {
@@ -39,11 +55,30 @@ class Webpage
             </nav>
         ";
     }
+    public function ShowNavRegisterLogin()
+    {
+        echo '
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <a class="navbar-brand" href="index.php">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="rejestracja.php">Rejestracja </a>
+                </li>
+                </ul>
+            </div>
+            </nav>
+        ';
+    }
     public function ShowStopka()
     {
 
         echo "
-        
+         </body>
+        </html>
         ";
     }
 }
