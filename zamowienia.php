@@ -13,13 +13,20 @@ if(!$con) {
     die('Błąd połączenia: '.mysqli_connect_error());
 }
 ?>
+    <h3 style="text-align: center">Zamównienia</h3>
     <div class="container">
         <table>
-            <tr>
-                <th>Company</th>
-                <th>Contact</th>
-                <th>Country</th>
-            </tr>
+            <?
+            $connection = $con->query("SELECT * FROM produkt");
+
+            while($data = $connection->fetch_assoc()) {
+                echo '<tr>';
+                echo '<th>' . $data["id"] . "</th><th>" . $data["nazwa"] . "</th><th>" . $data["rozmiar"] . "</th><th>" . $data["producent"] . "</th><th>" . $data["dostepnosc"] . "</th><th>" . $data["cena"] . "</th><th>" . $data["typ"] . "</th><th>" . $data["opis"] . "</th>";
+                echo '</tr>';
+            }
+
+            $con->close();
+            ?>
         </table>
     </div>
 <?php
@@ -27,3 +34,5 @@ if(!$con) {
 $web->ShowStopka();
 
 ?>
+
+Sprawdź ile jest na magazynie = funkcja z poziomu zamówień

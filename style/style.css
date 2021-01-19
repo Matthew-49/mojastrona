@@ -76,9 +76,11 @@ footer{
 
 /* Logged in menu */
 .menu {
+    height: 85vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
     text-align: center;
 }
 
@@ -90,7 +92,7 @@ table {
 }
 
 td, th {
-    border: 1px solid #dddddd;
+    border: 1px solid lightgrey;
     text-align: left;
     padding: 8px;
 }

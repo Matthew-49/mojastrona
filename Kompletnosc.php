@@ -1,1 +1,0 @@
-Sprawdź ile jest na magazynie = funkcja z poziomu zamówień
