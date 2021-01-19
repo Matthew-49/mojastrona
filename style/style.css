@@ -1,21 +1,4 @@
-body{
-    background-color: gray;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0px;
-    margin: 0px;
-    height: 100%;
-    
-}
-header{
-    background-color: black;
-    color: white;
-    padding: 20px;
-}
-    
-
 .zew{
-
     background-color: gray;
     color: black;
     display: flex;
@@ -23,9 +6,8 @@ header{
     flex-wrap: wrap;
     height: 100%;
     width: 100%;
-    
-    
 }
+
 .wew{
     background-color: green;
     width: 200px;
@@ -35,10 +17,31 @@ header{
     display: block;
     margin-left: auto;
     margin-right: auto;
-
-    
-
 }
+
+/* General data */
+body{
+    background-color: whitesmoke;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.batton {
+    background: rgba(144, 238, 144, 0.5);
+    border: 1px solid darkgrey;
+    width: 200px;
+    color: black;
+}
+
+header{
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+
 footer{
     background-color: black;
     color: white;
@@ -46,5 +49,35 @@ footer{
     bottom: 0px;
     min-width: 100%;
     position: fixed;
-    
+}
+
+/* Form data */
+.FormData {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.FormData input {
+    margin-bottom: 4%;
+}
+
+.FormData button {
+    width: 150px;
+}
+
+.ErrorDiv {
+    color: red;
+    font-size: large;
+    font-weight: bold;
+}
+
+/* Logged in menu */
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
 }

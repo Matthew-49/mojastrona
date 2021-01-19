@@ -6,19 +6,20 @@
     $web = new Webpage;
     $web->ShowHeader();
 
-    if(isset($_SESSION['username'])){
-        $web->ShowNavLogged();
-    } else {
-        $web->ShowNavNotLogged();
-    }
-
-?>
-
-    <main role="main" class="container col-4 pt-5">
-        <a href="logowanie.php" class=" btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Logowanie</a>
+if(isset($_SESSION['username'])){
+    $web->ShowMenu();
+} else {
+    echo '
+    <div class="container col-4 pt-5">';
+        if($_SESSION['LoggedIn'] == true){
+            echo "Successfully logged in";
+            unset($_SESSION['LoggedIn']);
+        }
+        echo '<a href="logowanie.php" class=" btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Logowanie</a>
         <a href="rejestracja.php" class=" btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Rejestracja</a>
-    </main>    
+    </div>
+        ';
+}
 
-<?php
     $web->ShowStopka()
 ?>

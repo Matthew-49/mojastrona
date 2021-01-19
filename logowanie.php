@@ -2,34 +2,41 @@
 
 session_start();
 
+if(isset($_SESSION['username'])){
+    header("location: index.php");
+}
+
 include 'Partials/Partials.php';
 $web = new Webpage;
 $web->ShowHeader();
 
-if(isset($_SESSION['username'])){
-    $web->ShowNavLogged();
-} else {
-    $web->ShowNavRegisterLogin();
-}
-
 ?>
-    <main role="main" class="container col-4">
+    <div class="container">
     <h2 class="text-center">Logowanie</h2>
-			<form name = "formularz2"
-				action = "logowaniesc.php"
-				method = "post">
-			
-                <div class="form-group">
-				<input type="text" name="login" placeholder="   Login">
-                </div>
-                
-				<div class="form-group">
-				<input type="password" name="haslo" placeholder="   Hasło">
-                </div>
+        <?
+        if(isset($_SESSION['LoginDone'])){
+            echo "Rejestracja udana. Zaloguj się by używać konta";
+        }
+        ?>
+        <form action="Credentials/login.php" method="post" class="FormData">
+            <div class="ErrorDiv">
+                <?
+                    if(isset($_SESSION['login'])) echo$_SESSION['login'];
+                ?>
+            </div>
+            <label for="login">Login</label>
+            <input type="text" name="login">
 
-            <button class="btn btn-lg btn-primary btn-block"value="Zalogój" type="submit">Zaloguj</button>
-			</form>
-    </main>
+            <label for="password">Hasło</label>
+            <input type="password" name="password">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+        </form>
+    </div>
 <?php
-$web->ShowStopka()
+$web->ShowStopka();
+
+if(isset($_SESSION['login'])) unset($_SESSION['login']);
+if(isset($_SESSION['LoginDone'])) unset($_SESSION['LoginDone']);
+
 ?>
