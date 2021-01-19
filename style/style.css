@@ -43,12 +43,18 @@ header{
 }
 
 footer{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: grey;
     padding: 10px 20px;
-    bottom: 0px;
+    bottom: 0;
     min-width: 100%;
+    border-top: 1px solid lightgrey;
     position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
 }
 
 /* Form data */
@@ -76,7 +82,7 @@ footer{
 
 /* Logged in menu */
 .menu {
-    height: 85vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -93,10 +99,20 @@ table {
 
 td, th {
     border: 1px solid lightgrey;
-    text-align: left;
+    text-align: center;
     padding: 8px;
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
+
+.false {
+    font-size: larger;
+    background: #ff2b2b;
+}
+
+.true {
+    font-size: larger;
+    background: lightgreen;
 }

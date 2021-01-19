@@ -15,9 +15,13 @@ if(isset($_SESSION['username'])){
             echo "Successfully logged in";
             unset($_SESSION['LoggedIn']);
         }
+        if(isset($_SESSION['ContactSuccess'])){
+            echo "<h2>Twoje zapytanie zostało wysłane, postaramy się odpowiedzieć tak szyko jak to możliwe</h2>";
+            unset($_SESSION['ContactSuccess']);
+        }
         echo '<a href="logowanie.php" class=" btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Logowanie</a>
-        <a href="rejestracja.php" class=" btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Rejestracja</a>
-    </div>
+                <a href="rejestracja.php" class=" btn btn-primary btn-lg active btn-block" role="button" aria-pressed="true">Rejestracja</a>
+                </div>
         ';
 }
 

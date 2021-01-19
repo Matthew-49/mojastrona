@@ -37,6 +37,9 @@ class Webpage
                     </li>
                     <li class="nav-item" style="float: right">
                         <a href="logout.php" class="nav-link"><h4>Wyloguj</h4></a>
+                    </li>
+                    <li class="nav-item" style="float: right">
+                        <a href="koszyk.php" class="nav-link"><h4>Koszyk</h4></a>
                     </li>';
                    } else {
                        echo '
@@ -55,17 +58,25 @@ class Webpage
     }
     public function ShowMenu(){
         echo '
-        <main class="menu">
-            <a href="zamowienia.php" class="batton"><h3>Zamówienia</h3></a>
-            <a href="kompletnosc.php" class="batton"><h3>Kompletność</h3></a>
+        <div class="menu">';
+        if(isset($_SESSION['ContactSuccess'])){
+            echo "<h2>Twoje zapytanie zostało wysłane, postaramy się odpowiedzieć tak szyko jak to możliwe</h2>";
+            unset($_SESSION['ContactSuccess']);
+        }
+        if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
+            echo '<a href="dodajprodukt.php" class="batton"><h3>Dodaj produkt</h3></a>';
+        }
+            echo '<a href="zamowienia.php" class="batton"><h3>Zamówienia</h3></a>
             <a href="listaproduktow.php" class="batton"><h3>Lista produktów</h3></a>
-            <a href="dodajprodukt.php" class="batton"><h3>Dodaj produkt</h3></a>
-        </main>
+        </div>
              ';
     }
     public function ShowStopka()
     {
         echo '
+        <footer>
+            <a href="kontakt.php"><h2>Kontakt</h2></a>
+        </footer>
         </body>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

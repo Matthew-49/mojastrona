@@ -2,6 +2,10 @@
 
 session_start();
 
+if(!isset($_SESSION['username'])){
+    header("location: index.php");
+}
+
 include 'Partials/Partials.php';
 $web = new Webpage;
 $web->ShowHeader();
@@ -15,6 +19,13 @@ if(!$con) {
 ?>
     <h3 style="text-align: center">Lista produktów</h3>
     <div class="container">
+        <?
+            $connection = $con->query("SELECT * FROM produkt where dostepnosc > 0");
+
+            $Amount = $con->affected_rows;
+        if ($Amount > 0){
+
+        ?>
         <table>
             <tr style="border-bottom: 2px solid black">
                 <th>Nazwa</th>
@@ -26,8 +37,6 @@ if(!$con) {
                 <th>Opis</th>
             </tr>
             <?
-            $connection = $con->query("SELECT * FROM produkt");
-
             while($data = $connection->fetch_assoc()) {
                 echo '<tr id="'. $data["id"] .'">';
                 echo "<th>" . $data["nazwa"] . "</th><th>" . $data["rozmiar"] . "</th><th>" . $data["producent"] . "</th><th>" . $data["dostepnosc"] . "</th><th>" . $data["cena"] . "</th><th>" . $data["typ"] . "</th><th>" . $data["opis"] . "</th>";
@@ -37,6 +46,11 @@ if(!$con) {
             $con->close();
             ?>
         </table>
+            <?
+        } else {
+            echo "<h2 style='text-align: center'>Wygląda na to, że nie posiadamy aktualnie żadnych produktów w sprzedaży</h2>";
+        }
+            ?>
     </div>
 <?php
 

@@ -32,12 +32,14 @@ if(strlen($_POST['password']) < 7) {
             $con->close();
             header("location: ../logowanie.php");
         } else {
-            $connection = $con->query("SELECT id, haslo FROM user WHERE nazwa = 'Virus299'");
+            $connection = $con->query("SELECT id, haslo, role FROM user WHERE nazwa = 'Virus299'");
             $data = $connection->fetch_assoc();
             $id = $data['id'];
+            $role = $data['role'];
             if(password_verify($password, $data['haslo'])) {
                 $_SESSION['username'] = $login;
                 $_SESSION['id'] = $id;
+                $_SESSION['role'] = $role;
                 $_SESSION['LoggedIn'] = true;
                 header("location: ../index.php");
             } else {
