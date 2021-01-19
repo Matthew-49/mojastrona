@@ -33,10 +33,10 @@ class Webpage
                         <a class="nav-link" href="menu.php"> </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profil.php">Profil</a>
+                        <a class="nav-link" href="profil.php"><h4>Profil</h4></a>
                     </li>
                     <li class="nav-item" style="float: right">
-                        <a href="logout.php" class="nav-link">Wyloguj</a>
+                        <a href="logout.php" class="nav-link"><h4>Wyloguj</h4></a>
                     </li>';
                    } else {
                        echo '
