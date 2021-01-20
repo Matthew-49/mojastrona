@@ -25,9 +25,14 @@ if(!$con) {
         $Amount = $con->affected_rows;
         if ($Amount > 0){ ?>
     <table>
+        <tr>
+            <th>Nazwa</th>
+            <th>Ilość</th>
+            <th>Cena</th>
+        </tr>
         <? while($data = $connection->fetch_assoc()) {
             echo '<tr id="'. $data["id"] .'">';
-            echo "<th>" . $data["nazwa"] . "</th><th>" . $data["rozmiar"] . "</th><th>" . $data["producent"] . "</th><th>" . $data["ilosc"] . "</th><th>" . $data["cena"] . "</th><th>" . $data["typ"] . "</th><th>" . $data["opis"] . "</th>";
+            echo "<th>" . $data["nazwa"] . "</th><th>" . $data["ilosc"] . "</th><th>" . $data["cena"] . "</th>";
             echo '</tr>';
         }
 

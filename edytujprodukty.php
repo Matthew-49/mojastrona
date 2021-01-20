@@ -17,7 +17,7 @@ if(!$con) {
     die('Błąd połączenia: '.mysqli_connect_error());
 }
 ?>
-    <h3 style="text-align: center">Lista produktów</h3>
+    <h3 style="text-align: center">Edycja produktów</h3>
     <div class="container">
     <center><button onclick="location.href='dodajprodukty.php'">Dodaj nowy produkt</button></center>
         <?

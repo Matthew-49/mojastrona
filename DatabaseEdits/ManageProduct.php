@@ -72,3 +72,29 @@ function AddData(){
         header("location: ../edytujprodukty.php");
     }
 }
+
+function AddToBasket() {
+    include("../Credentials/polacz.php");
+    $con = new mysqli($host, $username, $password, $dbName);
+    if(!$con) {
+        die('Błąd połączenia: '.mysqli_connect_error());
+    }
+
+    $id = $_POST['id'];
+    $nazwa = $_POST['nazwa'];
+    $producent = $_POST['producent'];
+    $dostepnosc = $_POST['dostepnosc'];
+    $cena = $_POST['cena'];
+
+    $con->query("INSERT INTO `produkt` VALUES (null, '$nazwa', '$rozmiar', '$producent', '$dostepnosc', '$cena', '$typ', '$opis')");
+
+    if($con->affected_rows != "-1"){
+        $_SESSION['EditSuccess'] = "Produkt dodany";
+        $con->close();
+        header("location: ../edytujprodukty.php");
+    } else {
+        $_SESSION['EditSuccess'] = "Błąd";
+        $con->close();
+        header("location: ../edytujprodukty.php");
+    }
+}

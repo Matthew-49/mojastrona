@@ -35,16 +35,23 @@ if(!$con) {
                 <th>Cena</th>
                 <th>Typ</th>
                 <th>Opis</th>
+                <th>Do koszyka</th>
             </tr>
             <?
+            echo '<form action="/DatabaseEdits/ManageProduct.php">';
             while($data = $connection->fetch_assoc()) {
                 echo '<tr id="'. $data["id"] .'">';
-                echo "<th>" . $data["nazwa"] . "</th><th>" . $data["rozmiar"] . "</th><th>" . $data["producent"] . "</th><th>" . $data["dostepnosc"] . "</th><th>" . $data["cena"] . "</th><th>" . $data["typ"] . "</th><th>" . $data["opis"] . "</th>";
+                echo "<th>" . $data["nazwa"] . "</th><th>" . $data["rozmiar"] . "</th><th>" . $data["producent"] . "</th><th>" . $data["dostepnosc"] . "</th><th>" . $data["cena"] . "</th><th>" . $data["typ"] . "</th><th>" . $data["opis"] . "</th><th><input type='number'></th> <th style='display: none'><input type='text' name='id' value='".$data['id']."'></th>";
                 echo '</tr>';
             }
 
             $con->close();
+            for ($x = 0; $x < 7; $x++) {
+                echo '<th style="border: none; background: whitesmoke"></th>';
+            }
             ?>
+            <th><input type="submit" value="Zamów"></th>
+            </form>
         </table>
             <?
         } else {
