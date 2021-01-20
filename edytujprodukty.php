@@ -19,6 +19,7 @@ if(!$con) {
 ?>
     <h3 style="text-align: center">Lista produktów</h3>
     <div class="container">
+    <center><button onclick="location.href='dodajprodukty.php'">Dodaj nowy produkt</button></center>
         <?
         if(isset($_SESSION['DataFromProducts']) && $_SESSION['Options'] == "edit"){
             unset($_SESSION['DataFromProducts']);
@@ -65,8 +66,8 @@ if(!$con) {
                 echo "<h2 style='text-align: center'>Wygląda na to, że nie posiadamy aktualnie żadnych produktów w sprzedaży</h2>";
             }
         } else {
-            if($_SESSION['EditSuccess'] == true){
-                echo "Produkt pomyśle zaktualizowany";
+            if(isset($_SESSION['EditSuccess'])){
+                echo $_SESSION['EditSuccess'];
                 unset($_SESSION['EditSuccess']);
             }
             $connection = $con->query("SELECT * FROM produkt where dostepnosc > 0");
