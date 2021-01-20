@@ -20,7 +20,8 @@ if(!$con) {
     <h3 style="text-align: center">Zamównienia</h3>
     <div class="container">
         <?
-        $connection = $con->query("SELECT * FROM zamowienia");
+        $id = $_SESSION['id'];
+        $connection = $con->query("SELECT * FROM zamowienia where userid = $id");
         $Amount = $con->affected_rows;
         if ($Amount > 0){ ?>
     <table>

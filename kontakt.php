@@ -6,16 +6,20 @@ include 'Partials/Partials.php';
 $web = new Webpage;
 $web->ShowHeader();
 
-    if(isset($_SESSION['username']) || $_SESSION['role'] == 'admin'){
+    if(isset($_SESSION['username']) && $_SESSION['role'] == 'admin'){
         echo '
             <h3 style="text-align: center">Admin kontakt panel</h3>
             
             <div class="container-fluid">';
             include("./Credentials/polacz.php");
             $con = new mysqli($host, $username, $password, $dbName);
-            $connection = $con->query("SELECT * FROM contactData");
+            $connection = $con->query("SELECT * FROM contactData ORDER BY `contactData`.`answered` ASC");
             $Amount = $con->affected_rows;
             if ($Amount > 0){
+                if(isset($_SESSION['kontakt'])){
+                    echo $_SESSION['kontakt'];
+                    unset($_SESSION['kontakt']);
+                }
                 echo '<table>
                     <tr style="border-bottom: 2px solid black">
                         <th>Nazwa</th>
@@ -27,7 +31,21 @@ $web->ShowHeader();
 
             while($data = $connection->fetch_assoc()) {
                 echo '<tr id="'. $data["id"] .'">';
-                echo "<th>" . $data["name"] . "</th><th>" . $data["email"] . "</th><th>" . $data["topic"] . "</th><th>" . $data["data"] . "</th><th class='" . $data["answered"] . "'>" . $data["answered"] . "</th>";
+                echo "<th>" . $data["name"] . "</th><th>" . $data["email"] . "</th><th>" . $data["topic"] . "</th><th>" . $data["data"] . "</th>";
+                if($data['answered'] == 0){
+                    echo "<th class='false'>";
+                } else {
+                    echo "<th class='true'>";
+                }
+                echo "<form action='Contact/UpdateStatus.php' method='POST'>
+                <input type='text' name='id' value='". $data['id'] . "' style='display: none;'>
+                <input type='text' name='answered' value='". $data['answered'] . "' style='display: none;'>";
+                if($data['answered'] == 0){
+                    echo "<input type='submit' value='false' style='background: none; border: none; font-size: larger'>";
+                } else {
+                    echo "<input type='submit' value='true' style='background: none; border: none; font-size: larger'>";
+                }
+                echo "</form></th>";
                 echo '</tr>';
             }
 

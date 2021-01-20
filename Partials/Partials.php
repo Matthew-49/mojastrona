@@ -64,7 +64,7 @@ class Webpage
             unset($_SESSION['ContactSuccess']);
         }
         if(isset($_SESSION['role']) && $_SESSION['role'] == "admin"){
-            echo '<a href="dodajprodukt.php" class="batton"><h3>Dodaj produkt</h3></a>';
+            echo '<a href="edytujprodukty.php" class="batton"><h3>Edytuj produkty</h3></a>';
         }
             echo '<a href="zamowienia.php" class="batton"><h3>Zamówienia</h3></a>
             <a href="listaproduktow.php" class="batton"><h3>Lista produktów</h3></a>

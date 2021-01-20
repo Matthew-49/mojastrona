@@ -20,7 +20,8 @@ if(!$con) {
     <h3 style="text-align: center">Koszyk</h3>
     <div class="container">
         <?
-            $connection = $con->query("SELECT id, name, amount FROM koszyk");
+            $userId = $_SESSION['id'];
+            $connection = $con->query("SELECT id, name, amount FROM koszyk where userid = $userId");
             $Amount = $con->affected_rows;
             if ($Amount > 0){
         ?>
