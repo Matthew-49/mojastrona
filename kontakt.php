@@ -20,37 +20,40 @@ $web->ShowHeader();
                     echo $_SESSION['kontakt'];
                     unset($_SESSION['kontakt']);
                 }
-                echo '<table>
-                    <tr style="border-bottom: 2px solid black">
-                        <th>Nazwa</th>
-                        <th>Email</th>
-                        <th>Temat</th>
-                        <th>Pytanie</th>
-                        <th>Odpowiedziany?</th>
-                    </tr>';
-
+                
+            echo '<div class="cards">';
             while($data = $connection->fetch_assoc()) {
-                echo '<tr id="'. $data["id"] .'">';
-                echo "<th>" . $data["name"] . "</th><th>" . $data["email"] . "</th><th>" . $data["topic"] . "</th><th>" . $data["data"] . "</th>";
-                if($data['answered'] == 0){
-                    echo "<th class='false'>";
-                } else {
-                    echo "<th class='true'>";
-                }
-                echo "<form action='Contact/UpdateStatus.php' method='POST'>
-                <input type='text' name='id' value='". $data['id'] . "' style='display: none;'>
-                <input type='text' name='answered' value='". $data['answered'] . "' style='display: none;'>";
-                if($data['answered'] == 0){
-                    echo "<input type='submit' value='false' style='background: none; border: none; font-size: larger'>";
-                } else {
-                    echo "<input type='submit' value='true' style='background: none; border: none; font-size: larger'>";
-                }
+                echo '
+                    <div class="card" style={height:15rem}>
+                        <div class="card-body">
+                            <h5 class="card-title">' . $data["name"] . '</h5>
+                            <h5 class="card-title">' . $data["email"] . '</h5>
+                            <h5 class="card-subtitle mb-2">' . $data["topic"] . '</h5>
+                            <hr>
+                            <h5 class="card-subtitle mb-2">' . $data["data"] . '</h5>';
+                            if($data['answered'] == 0){
+                                echo "<h5 class='false'>";
+                            } else {
+                                echo "<h5 class='true'>";
+                            }
+                        echo '
+                            <form action="Contact/UpdateStatus.php" method="POST">
+                                <input type="text" name="id" value="'. $data["id"] . '" style="display: none;">
+                                <input type="text" name="answered" value="'. $data["answered"] . '" style="display: none;">';
+                                if($data["answered"] == 0){
+                                    echo "<input type='submit' value='false' style='background: none; border: none; font-size: larger'>";
+                                } else {
+                                    echo '<input type="submit" value="true" style="background: none; border: none; font-size: larger">';
+                                }
+                        echo '</div>
+                    </div>
+                    ';
                 echo "</form></th>";
                 echo '</tr>';
             }
 
             $con->close();
-        echo '</table>';
+        echo '</div>';
         } else {
             echo "<h2 style='text-align: center'>Odpowiedziano na wszystkie zapytania</h2>";
         }

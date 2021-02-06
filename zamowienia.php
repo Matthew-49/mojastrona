@@ -19,29 +19,57 @@ if(!$con) {
 ?>
     <h3 style="text-align: center">Zamównienia</h3>
     <div class="container">
-        <?
-        $id = $_SESSION['id'];
-        $connection = $con->query("SELECT * FROM zamowienia where userid = $id");
-        $Amount = $con->affected_rows;
-        if ($Amount > 0){ ?>
-    <table>
-        <tr>
-            <th>Nazwa</th>
-            <th>Ilość</th>
-            <th>Cena</th>
-        </tr>
-        <? while($data = $connection->fetch_assoc()) {
-            echo '<tr id="'. $data["id"] .'">';
-            echo "<th>" . $data["nazwa"] . "</th><th>" . $data["ilosc"] . "</th><th>" . $data["cena"] . "</th>";
-            echo '</tr>';
-        }
-
-        $con->close();
-        ?>
-    </table>
-        <?
+        <?php
+        if($_SESSION['role'] == "admin"){
+            $id = $_SESSION['id'];
+            $connection = $con->query("SELECT * FROM zamowienia");
+            $Amount = $con->affected_rows;
+            if ($Amount > 0){ ?>
+                <div class="cards">
+                    <?php while($data = $connection->fetch_assoc()) {
+                        echo '
+                            <div class="card" style={height:15rem}>
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $data["nazwa"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">' . $data["ilosc"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">' . $data["cena"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">' . $data["userid"] . '</h5>
+                                </div>
+                            </div>
+                            ';
+                    }
+                    $con->close();
+                    ?>
+                </div>
+                <?php
+            } else {
+                echo "<h2 style='text-align: center'>Wygląda na to, że nie złożyłeś żadnego zamówienia, złóż jakieś by sprawdzić tutaj jego status</h2>";
+            }
         } else {
-            echo "<h2 style='text-align: center'>Wygląda na to, że nie złożyłeś żadnego zamówienia, złóż jakieś by sprawdzić tutaj jego status</h2>";
+            $id = $_SESSION['id'];
+            $connection = $con->query("SELECT * FROM zamowienia where userid = $id");
+            $Amount = $con->affected_rows;
+            if ($Amount > 0){ ?>
+                <div class="cards">
+                    <?php while($data = $connection->fetch_assoc()) {
+                        echo '
+                            <div class="card" style={height:15rem}>
+                                <div class="card-body">
+                                    <h5 class="card-title">' . $data["nazwa"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Ilość: ' . $data["ilosc"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Cena: ' . $data["cena"] . '</h5>
+                                </div>
+                            </div>
+                            ';
+                    }
+
+                    $con->close();
+                    ?>
+                </div>
+                <?php
+            } else {
+                echo "<h2 style='text-align: center'>Wygląda na to, że nie złożyłeś żadnego zamówienia, złóż jakieś by sprawdzić tutaj jego status</h2>";
+            }
         }
         ?>
     </div>
@@ -50,6 +78,3 @@ if(!$con) {
 $web->ShowStopka();
 
 ?>
-
-<!--TODO-->
-<!--Zamówienie 1 = kasuj dane z magazynu-->

@@ -15,21 +15,21 @@ $web->ShowHeader();
     <h2 class="text-center">Formularz rejestracyjny</h2>
     <form action="Credentials/register.php" method="post" class="FormData">
             <div class="ErrorDiv">
-                <?
+                <?php
                     if(isset($_SESSION['email'])) echo$_SESSION['email'];
                 ?>
             </div>
         <label for="email">Email</label>
-        <input type="email" name="email" placeholder="Email" value="<? if($_SESSION["emailData"]){ echo $_SESSION["emailData"];} ?>" required>
+        <input type="email" name="email" placeholder="Email" value="<?php if($_SESSION["emailData"]){ echo $_SESSION["emailData"];} ?>" required>
             <div class="ErrorDiv">
-                <?
+                <?php
                     if(isset($_SESSION['login'])) echo$_SESSION['login'];
                 ?>
             </div>
         <label for="login">Login</label>
-        <input type="text" name="login" placeholder="Login" value="<? if($_SESSION["loginData"]){ echo $_SESSION["loginData"];} ?>" required>
+        <input type="text" name="login" placeholder="Login" value="<?php if($_SESSION["loginData"]){ echo $_SESSION["loginData"];} ?>" required>
             <div class="ErrorDiv">
-                <?
+                <?php
                     if(isset($_SESSION['password'])) echo$_SESSION['password'];
                 ?>
             </div>

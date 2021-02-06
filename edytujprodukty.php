@@ -20,7 +20,7 @@ if(!$con) {
     <h3 style="text-align: center">Edycja produktów</h3>
     <div class="container">
     <center><button onclick="location.href='dodajprodukty.php'">Dodaj nowy produkt</button></center>
-        <?
+        <?php
         if(isset($_SESSION['DataFromProducts']) && $_SESSION['Options'] == "edit"){
             unset($_SESSION['DataFromProducts']);
             $id =  $_SESSION['IdFromProducts'];
@@ -83,7 +83,7 @@ if(!$con) {
                         <th>Typ</th>
                         <th>Opis</th>
                     </tr>
-                    <?
+                    <?php
                     while($data = $connection->fetch_assoc()) {
                         echo "
                         <tr id='". $data["id"] ."'>
@@ -105,7 +105,7 @@ if(!$con) {
                     $con->close();
                     ?>
                 </table>
-                <?
+                <?php
             } else {
                 echo "<h2 style='text-align: center'>Wygląda na to, że nie posiadamy aktualnie żadnych produktów w sprzedaży</h2>";
             }

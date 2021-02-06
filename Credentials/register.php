@@ -72,13 +72,14 @@ if(!$con)
 
         $haslo_hash = password_hash($haslo, PASSWORD_DEFAULT);
 
-        $con->query("INSERT INTO user VALUES (NULL, '$login', '$haslo_hash', '$email')");
+        $con->query("INSERT INTO user VALUES (NULL, '$login', '$haslo_hash', '$email', default )");
 
         if($con->affected_rows != "-1"){
             $con->close();
             $_SESSION['LoginDone'] = true;
             header('Location: ../logowanie.php');
         } else {
+            print_r($con);
             $_SESSION['login'] = "Wygląda na to, że napotkaliśmy błąd z bazą danych. Przerszamy za utrudnienia";
             $con->close();
             header("location: ../rejestracja.php");
