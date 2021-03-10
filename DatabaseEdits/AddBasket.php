@@ -18,7 +18,6 @@ if(!isset($_POST['basket'])){
 }
 
 function AddToBasket() {
-    echo "Not added to basket";
     include("../Credentials/polacz.php");
     $con = new mysqli($host, $username, $password, $dbName);
     if(!$con) {

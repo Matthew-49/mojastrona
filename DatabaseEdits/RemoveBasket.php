@@ -29,7 +29,6 @@ function RemoveFromBasket() {
     $con->query("DELETE FROM `koszyk` WHERE id = $id");
 
     if($con->affected_rows != "-1"){
-        print_r($con);
         $con->close();
         header("location: ../koszyk.php");
     } else {

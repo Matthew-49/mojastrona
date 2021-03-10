@@ -36,8 +36,8 @@ function SubmitBasket() {
             $FullAmount = $data2['dostepnosc'] - $amount;
             $con->query("UPDATE `produkt` SET `dostepnosc` = '$FullAmount' WHERE `id` = $Fullid");
         }
-      $con->query("INSERT INTO `zamowienia` VALUES ($id, '$name', '$amount', $price, $userid, $productid )");
-      $con->query("DELETE FROM `koszyk` WHERE id = $id");
+        $con->query("INSERT INTO `zamowienia` VALUES ($id, '$name', '$amount', $price, $userid, $productid, CURDATE() )");
+        $con->query("DELETE FROM `koszyk` WHERE id = $id");
     }
 
     if($con->affected_rows != "-1"){
