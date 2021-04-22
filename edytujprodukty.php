@@ -19,7 +19,9 @@ if(!$con) {
 ?>
     <h3 style="text-align: center">Edycja produktów</h3>
     <div class="container">
-    <center><button onclick="location.href='dodajprodukty.php'">Dodaj nowy produkt</button></center>
+    <center>
+        <button onclick="location.href='dodajprodukty.php'">Dodaj nowy produkt</button>
+    </center>
         <?php
         if(isset($_SESSION['DataFromProducts']) && $_SESSION['Options'] == "edit"){
             unset($_SESSION['DataFromProducts']);
@@ -70,11 +72,13 @@ if(!$con) {
                 echo $_SESSION['EditSuccess'];
                 unset($_SESSION['EditSuccess']);
             }
-            $connection = $con->query("SELECT * FROM produkt where dostepnosc > 0");
+            $connection = $con->query("SELECT * FROM produkt");
             $Amount = $con->affected_rows;
             if ($Amount > 0){?>
                 <table>
                     <tr style="border-bottom: 2px solid black">
+                        <th>Usuń</th>
+                        <th>Edycja</th>
                         <th>Nazwa</th>
                         <th>Rozmiar</th>
                         <th>Producent</th>
@@ -87,13 +91,22 @@ if(!$con) {
                     while($data = $connection->fetch_assoc()) {
                         echo "
                         <tr id='". $data["id"] ."'>
-                            <th>
-                                <form action='DatabaseEdits/ManageProduct.php' method='POST'>
+                             <form action='DatabaseEdits/RemoveProduct.php' method='POST'>
+                                <th>
+                                    <button style='float: left'>Usuń</button>
+                                </th>
+                                <input type='text' name='id' value='". $data['id'] ."' style='display: none'>
+                            </form>
+                            <form action='DatabaseEdits/ManageProduct.php' method='POST'>
+                                <th>
+                                    <button style='float: left'>Edytuj</button>
+                                </th>
+                                <th>
                                     <input type='text' name='id' value='". $data['id'] ."' style='display: none'>
                                     <input type='text' name='edit' value='edit' style='display: none'>
                                     <input type='submit' value='". $data['nazwa'] ."' style='background: none; border: none; font-size: larger'>
-                                </form>
-                            </th>
+                                </th>
+                            </form>
                             <th>". $data['rozmiar'] ."</th>
                             <th>". $data['producent'] ."</th>
                             <th>". $data['dostepnosc'] ."</th>

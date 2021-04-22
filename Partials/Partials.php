@@ -18,8 +18,8 @@ class Webpage
         
              <title>Hurtownia</title>
           </head>
-          <body>
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+          <body style="background: lightgrey">
+            <nav class="navbar navbar-expand-md navbar-dark mb-4" style="background: #292931">
             <div class="col text-white center mb-4 pt-3">
             <a class="navbar-brand" href="index.php"><h3>Hurtownia</h3></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,15 +32,22 @@ class Webpage
                        echo '<li class="nav-item ">
                         <a class="nav-link" href="menu.php"> </a>
                     </li>
+                    <li class="nav-item" style="float: right">
+                        <a href="koszyk.php" class="nav-link"><h4>Koszyk</h4></a>
+                    </li>                    
+                    <li class="nav-item" style="float: right">
+                        <a href="listaproduktow.php" class="nav-link"><h4>Produkty</h4></a>
+                    </li>
+                    </ul>
+                    <ul class="navbar-nav mr-auto navRigth">
                     <li class="nav-item">
                         <a class="nav-link" href="profil.php"><h4>Profil</h4></a>
                     </li>
                     <li class="nav-item" style="float: right">
                         <a href="logout.php" class="nav-link"><h4>Wyloguj</h4></a>
                     </li>
-                    <li class="nav-item" style="float: right">
-                        <a href="koszyk.php" class="nav-link"><h4>Koszyk</h4></a>
-                    </li>';
+                    </ul>
+                    ';
                    } else {
                        echo '
                            <li class="nav-item ">
@@ -58,7 +65,7 @@ class Webpage
     }
     public function ShowMenu(){
         echo '
-        <div class="menu">';
+        <div class="menu" style="background: lightgrey">';
         if(isset($_SESSION['ContactSuccess'])){
             echo "<h2>Twoje zapytanie zostało wysłane, postaramy się odpowiedzieć tak szyko jak to możliwe</h2>";
             unset($_SESSION['ContactSuccess']);
@@ -74,7 +81,7 @@ class Webpage
     public function ShowStopka()
     {
         echo '
-        <footer>
+        <footer style="background: #292931;">
             <a href="kontakt.php"><h2>Kontakt</h2></a>
         </footer>
         </body>

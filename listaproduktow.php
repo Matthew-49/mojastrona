@@ -19,9 +19,23 @@ if(!$con) {
 ?>
     <h3 style="text-align: center">Lista produktów</h3>
     <div class="container">
+        <center>
+            <form action="listaproduktow.php" style="margin: 10px" method="POST">
+                <label for="produktName">Nazwa produktu</label>
+                <input type="text" name="produktName">
+                <input type="submit" value="Szukaj">
+            </form>
+            <button onclick="window.location.href='listaproduktow.php'">Wszystkie produkty</button>
+        </center>
         <?php
         if($_SESSION['role'] == "admin"){
-            $connection = $con->query("SELECT * FROM produkt");
+            if(isset($_POST['produktName'])){
+                $connection = $con->query("SELECT * FROM produkt where nazwa like '%". $_POST['produktName'] ."%' ");
+                unset($_POST['produktName']);
+            } else {
+                $connection = $con->query("SELECT * FROM produkt");
+            }
+
             $Amount = $con->affected_rows;
             if ($Amount > 0){
 
@@ -31,14 +45,14 @@ if(!$con) {
                     while($data = $connection->fetch_assoc()) {
                         echo '
                             <div class="card" style={height:15rem}>
-                                <div class="card-body">
+                                <div class="card-body" style="text-align: center">
                                     <h5 class="card-title">' . $data["nazwa"] . '</h5>
-                                    <h5 class="card-subtitle mb-2">' . $data["rozmiar"] . '</h5>
-                                    <h5 class="card-subtitle mb-2">' . $data["producent"] . '</h5>
-                                    <h5 class="card-subtitle mb-2">' . $data["dostepnosc"] . '</h5>
-                                    <h5 class="card-subtitle mb-2">' . $data["cena"] . '</h5>
-                                    <h5 class="card-subtitle mb-2">' . $data["typ"] . '</h5>
-                                    <h5 class="card-subtitle mb-2">' . $data["opis"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Rozmiar: ' . $data["rozmiar"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Producent: ' . $data["producent"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Dostępność: ' . $data["dostepnosc"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Cena: ' . $data["cena"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Typ: ' . $data["typ"] . '</h5>
+                                    <h5 class="card-subtitle mb-2">Opis: ' . $data["opis"] . '</h5>
                                 </div>
                             </div>
                             ';
@@ -52,7 +66,12 @@ if(!$con) {
                 echo "<h2 style='text-align: center'>Wygląda na to, że nie posiadamy aktualnie żadnych produktów w sprzedaży</h2>";
             }
         } else {
-            $connection = $con->query("SELECT * FROM produkt where dostepnosc > 0");
+            if(isset($_POST['produktName'])){
+                $connection = $con->query("SELECT * FROM produkt where nazwa like '%". $_POST['produktName'] ."%' AND dostepnosc > 0");
+                unset($_POST['produktName']);
+            } else {
+                $connection = $con->query("SELECT * FROM produkt where dostepnosc > 0");
+            }
             $Amount = $con->affected_rows;
             if ($Amount > 0){
 

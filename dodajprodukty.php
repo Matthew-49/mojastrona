@@ -36,7 +36,7 @@ $web->ShowHeader();
     <label for="opis">Opis</label>
     <input type="text" name="opis">
 
-    <input type="submit" value="Edytuj">
+    <input type="submit" value="Dodaj">
 </form>
 
 <?php
